@@ -1,6 +1,7 @@
 require("dotenv").config(); // Load environment variables
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors"); // Import the CORS package
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -25,6 +26,9 @@ mongoose
     console.error("MongoDB connection error:", err);
     process.exit(1);
   });
+
+// Enable CORS for all origins
+app.use(cors());
 
 // Middleware to parse JSON
 app.use(express.json());
